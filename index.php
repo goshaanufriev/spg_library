@@ -1,0 +1,65 @@
+<?php
+if(isset($_FILES["zip"])) {
+	$errors = array();
+	$file_name = $_FILES["zip"]["name"];
+	$file_size = $_FILES["zip"]["size"];
+	$file_tmp = $_FILES["zip"]["tmp_name"];
+	$file_type = $_FILES["zip"]["type"];
+	$file_ext = strtolower(end(explode('.', 	$file_name = $_FILES["zip"]["name"])));
+
+	$expentions = array("zip", "rar", "7z");
+
+	if($file_size > 20971152) {
+		$errors[] = "Файл должен быть 2 Мб";
+	}
+	if(empty($errors) == true) {
+		move_uploaded_file($file_tmp, "files/".$file_name);
+		echo "Success!";
+	}
+	else {
+		print $errors;
+	}
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Библиотека СПГ</title>
+	<link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap-grid.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/libs.min.js"></script>
+</head>
+<body>
+	<header class="head">
+
+				<ul class="top-nav">
+					<li><a href="#">Главная</a></li>
+					<li><a href="#str">СТР</a></li>
+				</ul>
+				
+				<h1 class="head__name">Библиотека СПГ</h1>
+
+	</header>
+
+	<main class="content">
+		
+		<div id="str">
+			<h1>СТР</h1>
+			<form action="" name="uploader" method="POST" enctype="multipart/form-data">
+				<p>Фамилия, Имя, Класс: </p><input type="text" required="required">
+				<p>Научный руководитель</p><input type="text" required="required">
+				<p>Тема работы</p><input type="text" required="required">
+				<p>Файлы (прикреплять архивом)</p>
+				<!-- <button id="load" type="submit">Загрузить</button> -->
+				<input type="file" name="zip"><br>
+				<input type="submit">
+			</form>
+		</div>
+
+	</main>
+
+
+<script src="js/common.js"></script>
+</body>
+</html>
