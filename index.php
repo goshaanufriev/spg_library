@@ -9,8 +9,8 @@ if(isset($_FILES["zip"])) {
 
 	$expentions = array("zip", "rar", "7z");
 
-	if($file_size > 20971152) {
-		$errors[] = "Файл должен быть 2 Мб";
+	if($file_size > 838860800) {
+		$errors[] = "Файл должен быть 100 Мб";
 	}
 	if(empty($errors) == true) {
 		move_uploaded_file($file_tmp, "files/".$file_name);
