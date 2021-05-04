@@ -15,13 +15,11 @@ if(isset($_FILES["zip"])) {
 	if(empty($errors) == true) {
 		move_uploaded_file($file_tmp, "files/".$file_name);
 		echo "Success!";
-		$fp = fopen("files/meta_$file_name.txt", 'w+');
-		fwrite($fp, "
-			Фамилия, Имя: $_POST['name']
-			Класс: $_POST['grade']
-			Научный руководитель: $_POST['teacher']
-			Тема работы: $_POST['topic']
-		");
+		$fp = fopen("files/meta_$file_name.txt", 'w');
+		fwrite($fp, 'Фамилия, Имя: ' + $_POST['name']);
+		fwrite($fp, 'Класс: ' + $_POST['grade']);
+		fwrite($fp, 'Научный руководитель: ' + $_POST['teacher']);
+		fwrite($fp, 'Тема работы: ' + $_POST['topic']);
 		fclose($fp);
 	}
 	else {
