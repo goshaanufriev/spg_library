@@ -5,7 +5,7 @@ if(isset($_FILES["zip"])) {
 	$file_size = $_FILES["zip"]["size"];
 	$file_tmp = $_FILES["zip"]["tmp_name"];
 	$file_type = $_FILES["zip"]["type"];
-	$file_ext = strtolower(end(explode('.', 	$file_name = $_FILES["zip"]["name"])));
+	$file_ext = strtolower(end(explode('.',	$file_name = $_FILES["zip"]["name"])));
 
 	$expentions = array("zip", "rar", "7z");
 
@@ -34,7 +34,7 @@ if(isset($_FILES["zip"])) {
 	<header class="head">
 
 				<ul class="top-nav">
-					<li><a href="#">Главная</a></li>
+					<li><a href="">Главная</a></li>
 					<li><a href="#str">СТР</a></li>
 				</ul>
 				
