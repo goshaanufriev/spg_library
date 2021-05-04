@@ -15,6 +15,14 @@ if(isset($_FILES["zip"])) {
 	if(empty($errors) == true) {
 		move_uploaded_file($file_tmp, "files/".$file_name);
 		echo "Success!";
+		$fp = fopen("files/meta_$file_name.txt", 'w+');
+		fwrite($fp, "
+			Фамилия, Имя: $_POST['name']
+			Класс: $_POST['grade']
+			Научный руководитель: $_POST['teacher']
+			Тема работы: $_POST['topic']
+		");
+		fclose($fp);
 	}
 	else {
 		print $errors;
@@ -47,9 +55,10 @@ if(isset($_FILES["zip"])) {
 		<div id="str">
 			<h1>СТР</h1>
 			<form action="" name="uploader" method="POST" enctype="multipart/form-data">
-				<p>Фамилия, Имя, Класс: </p><input type="text" required="required">
-				<p>Научный руководитель</p><input type="text" required="required">
-				<p>Тема работы</p><input type="text" required="required">
+				<p>Фамилия, Имя: </p><input name="name" type="text" required="required">
+				<p>Класс: </p><input name="grade" type="text" required="required">
+				<p>Научный руководитель</p><input name="teacher" type="text" required="required">
+				<p>Тема работы</p><input type="text" name="topic" required="required">
 				<p>Файлы (прикреплять архивом)</p>
 				<!-- <button id="load" type="submit">Загрузить</button> -->
 				<input type="file" name="zip"><br>
